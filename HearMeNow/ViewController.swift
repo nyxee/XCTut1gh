@@ -52,7 +52,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     }
 
     @IBAction func recordPressed(_ sender: Any) {
-        
+        print("Record Pressed")
+
         if(soundRecorder?.isRecording == true) {
             soundRecorder?.stop()
             recordButton.setTitle("Record", for: UIControlState.normal)
@@ -70,6 +71,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     }
 
     @IBAction func playPressed(_ sender: Any) {
+        print("Play Pressed")
         if(soundPlayer?.isPlaying == true) {
             soundPlayer?.pause()
             playButton.setTitle("Play", for: UIControlState.normal)
@@ -79,6 +81,9 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             do {
                 try soundPlayer = AVAudioPlayer(contentsOf: url)
                 soundPlayer?.delegate = self
+                soundPlayer?.enableRate = true
+                soundPlayer?.rate = 0.5
+                soundPlayer?.volume = 1.0
                 soundPlayer?.play()
                 
             } catch {
